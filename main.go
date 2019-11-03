@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"gopkg.in/flosch/pongo2.v3"
-	"io/ioutil"
+	"io"
 	"os"
 )
 
@@ -58,14 +58,20 @@ func main() {
 		os.Exit(1)
 	}
 
+	var outputWriter io.WriteCloser
 	if *outputPath == "" {
-		fmt.Println(string(output))
+		outputWriter = os.Stdout
 	} else {
-		if err := ioutil.WriteFile(*outputPath, output, 0664); err != nil {
+		outputWriter, err = os.Create(*outputPath)
+		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
 	}
 
-
+	defer outputWriter.Close()
+	if _, err := fmt.Fprintln(outputWriter, string(output)); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }
