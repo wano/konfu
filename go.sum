@@ -1,2 +1,6 @@
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
+gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/flosch/pongo2.v3 v3.0.0-20141028000813-5e81b817a0c4 h1:eyQQg/uGuZ3ndaBhqteakHpVW+dSOPalilfC9RpM2TA=
 gopkg.in/flosch/pongo2.v3 v3.0.0-20141028000813-5e81b817a0c4/go.mod h1:bJkYqV5pg6+Z7MsSu/hSb1zsPT955hBW2QHLE1jm4wA=
+gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
+gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=

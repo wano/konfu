@@ -1,18 +1,18 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
 	"flag"
+	"fmt"
 	"gopkg.in/flosch/pongo2.v3"
 	"io/ioutil"
 	"os"
 )
 
 func main() {
-	var config = flag.String("c", "", "json parameter file path")
+	var config = flag.String("c", "", "parameter file path")
 	var templatePath = flag.String("t", "", "template file path")
 	var outputPath = flag.String("o", "", "render result output file path")
+	var mode = flag.String("m", "json", "parameter file mode")
 	flag.Parse()
 
 	if *config == "" {
@@ -25,15 +25,24 @@ func main() {
 		os.Exit(1)
 	}
 
+	var parser ParameterParser
+	if *mode == "yaml" {
+		parser = NewYamlParser()
+	} else {
+		parser = NewJsonParser()
+	}
 
-	buf, err := ioutil.ReadFile(*config)
+	f, err := os.Open(*config)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
+	defer f.Close()
+
 	var context pongo2.Context
-	if err := json.Unmarshal(buf, &context); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+	context, err = parser.Parse(f)
+	if err != nil {
+		fmt.Fprint(os.Stderr, err)
 		os.Exit(1)
 	}
 
