@@ -16,6 +16,14 @@ go get -u github/wano/konfu
 konfu -c test/sample.json -t test/sample.tpl -o /path/to/output
 ```
 
-- -c : json parameter file path(required)
-- -t : template file path(required)
-- -o : output file path(if not specified, output to stdout)
+```
+Usage of konfu:
+  -c string
+    	parameter file path
+  -m string
+    	parameter file mode. json or yaml (default "json")
+  -o string
+    	render result output file path. if not specified, output to stdout.
+  -t string
+    	template file path
+```

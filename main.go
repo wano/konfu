@@ -11,8 +11,8 @@ import (
 func main() {
 	var config = flag.String("c", "", "parameter file path")
 	var templatePath = flag.String("t", "", "template file path")
-	var outputPath = flag.String("o", "", "render result output file path")
-	var mode = flag.String("m", "json", "parameter file mode")
+	var outputPath = flag.String("o", "", "render result output file path. if not specified, output to stdout.")
+	var mode = flag.String("m", "json", "parameter file mode. json or yaml")
 	flag.Parse()
 
 	if *config == "" {
